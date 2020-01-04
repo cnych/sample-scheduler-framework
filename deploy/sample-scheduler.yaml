@@ -14,17 +14,6 @@ rules:
       - update
   - apiGroups:
       - ""
-    resourceNames:
-      - scheduler-framework-sample
-    resources:
-      - endpoints
-    verbs:
-      - delete
-      - get
-      - patch
-      - update
-  - apiGroups:
-      - ""
     resources:
       - nodes
     verbs:
