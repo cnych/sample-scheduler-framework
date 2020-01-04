@@ -168,7 +168,7 @@ data:
         enabled:
         - name: "sample-plugin"
     pluginConfig:
-    - name: "sample"
+    - name: "sample-plugin"
       args: {"master": "master", "kubeconfig": "kubeconfig"}
 ---
 apiVersion: apps/v1
