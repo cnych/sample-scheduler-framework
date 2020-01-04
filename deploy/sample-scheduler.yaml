@@ -169,7 +169,10 @@ data:
         - name: "sample-plugin"
     pluginConfig:
     - name: "sample-plugin"
-      args: {"master": "master", "kubeconfig": "kubeconfig"}
+      args:
+        favorite_color: "#326CE5"
+        favorite_number: 7
+        thanks_to: "thockin"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -196,7 +199,7 @@ spec:
             name: scheduler-config
       containers:
         - name: scheduler-ctrl
-          image: cnych/sample-scheduler:v0.1.0
+          image: cnych/sample-scheduler:v0.1.6
           imagePullPolicy: IfNotPresent
           args:
             - sample-scheduler-framework

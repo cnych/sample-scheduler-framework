@@ -11,7 +11,14 @@ import (
 // 插件名称
 const Name = "sample-plugin"
 
+type Args struct {
+	FavoriteColor  string `json:"favorite_color,omitempty"`
+	FavoriteNumber int    `json:"favorite_number,omitempty"`
+	ThanksTo       string `json:"thanks_to,omitempty"`
+}
+
 type Sample struct {
+	args   *Args
 	handle framework.FrameworkHandle
 }
 
@@ -40,12 +47,13 @@ func (s *Sample) PreBind(pc *framework.PluginContext, pod *v1.Pod, nodeName stri
 
 //type PluginFactory = func(configuration *runtime.Unknown, f FrameworkHandle) (Plugin, error)
 func New(configuration *runtime.Unknown, f framework.FrameworkHandle) (framework.Plugin, error) {
-	var args interface{}
+	args := &Args{}
 	if err := framework.DecodeInto(configuration, args); err != nil {
 		return nil, err
 	}
-	klog.V(3).Infof("--------> args: %+v", args)
+	klog.V(3).Infof("get plugin config args: %+v", args)
 	return &Sample{
+		args: args,
 		handle: f,
 	}, nil
 }
